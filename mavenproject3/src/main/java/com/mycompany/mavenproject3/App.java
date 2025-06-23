@@ -1,5 +1,6 @@
 package com.mycompany.mavenproject3;
 
+import com.cdt.utils.JdbcConnector;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import javafx.scene.paint.Color;
 
 /**
  * JavaFX App
@@ -21,6 +21,12 @@ public class App extends Application {
         scene = new Scene(loadFXML("primary"), 200, 300);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        JdbcConnector.getInstance().close();
     }
 
     static void setRoot(String fxml) throws IOException {
